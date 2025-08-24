@@ -160,51 +160,81 @@ wr
 
 ### 🔹 Routeur Dep‑A (Paris)
 ```bash
+! Accès au mode privilégié
 enable
 conf t
+
+! Nom du routeur
 hostname Dep-A
+
+! Réservation d’adresses IP pour éviter qu’elles soient attribuées par DHCP
 ip dhcp excluded-address 192.168.20.1
 ip dhcp excluded-address 192.168.160.1
+
+! Pool DHCP pour VLAN 20 (DATA)
 ip dhcp pool DATA
  network 192.168.20.0 255.255.255.0
  default-router 192.168.20.1
  dns-server 8.8.8.8
+
+! Pool DHCP pour VLAN 160 (VOIX)
 ip dhcp pool VOIX
  network 192.168.160.0 255.255.255.0
  default-router 192.168.160.1
  option 150 ip 192.168.160.1
  dns-server 8.8.8.8
+
+! Activation de l’interface physique FastEthernet 0/0
 interface fa0/0
  no shutdown
+
+! VLAN 20 - DATA
 interface fa0/0.20
  encapsulation dot1Q 20
  ip address 192.168.20.1 255.255.255.0
+
+! VLAN 88 - GESTION (VLAN natif)
 interface fa0/0.88
  encapsulation dot1Q 88 native
  ip address 192.168.88.1 255.255.255.0
+
+! VLAN 160 - VOIX
 interface fa0/0.160
  encapsulation dot1Q 160
  ip address 192.168.160.1 255.255.255.0
+
+! Liaison série vers Nancy
 interface s0/0/0
  ip address 10.0.0.1 255.255.255.252
  clock rate 64000
  no shutdown
+
+! Service de téléphonie IP
 telephony-service
  max-ephones 10
  max-dn 10
  ip source-address 192.168.160.1 port 2000
+
+! Numéros attribués aux téléphones IP de Paris
 ephone-dn 1
  number 1000
 ephone-dn 2
  number 1001
+
+! Association physique des ephones aux DN
 ephone 1
  button 1:1
 ephone 2
  button 1:2
+
+! Routage vers l’ensemble du réseau interne (y compris Nancy)
 ip route 192.168.0.0 255.255.0.0 s0/0/0
+
+! Dial-peer VoIP vers Nancy
 dial-peer voice 1 voip
  destination-pattern 2...
  session target ipv4:10.0.0.2
+
 end
 wr
 ```
