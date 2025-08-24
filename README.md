@@ -64,24 +64,20 @@ L’objectif est de mettre en place une **infrastructure ToIP** permettant :
 
 | Site   | Interface   | VLAN / Réseau     | Adresse IP        | Masque             | Passerelle       |
 |--------|-------------|-------------------|-------------------|--------------------|------------------|
-| routeur
-Paris  | S0/0/0      | Liaison série     | 10.0.0.1           | 255.255.255.252    | -                |
+| Routeur Paris  | S0/0/0      | Liaison série     | 10.0.0.1           | 255.255.255.252    | -                |
 |        | Fa0/0.20    | VLAN 20 (DATA)    | 192.168.20.1       | 255.255.255.0      | -                |
 |        | Fa0/0.160   | VLAN 160 (VOIX)   | 192.168.160.1      | 255.255.255.0      | -                |
 |        | Fa0/0.88    | VLAN 88 (GESTION) | 192.168.88.1       | 255.255.255.0      | -                |
-| routeur Nancy  | S0/0/0      | Liaison série     | 10.0.0.2           | 255.255.255.252    | -                |
+| Routeur Nancy  | S0/0/0      | Liaison série     | 10.0.0.2           | 255.255.255.252    | -                |
 |        | Fa0/0.10    | VLAN 10 (DATA)    | 192.168.10.1       | 255.255.255.0      | -                |
 |        | Fa0/0.150   | VLAN 150 (VOIX)   | 192.168.150.1      | 255.255.255.0      | -                |
 |        | Fa0/0.99    | VLAN 99 (GESTION) | 192.168.99.1       | 255.255.255.0      | -                |
-| Dep-A  | Carte réseau| DHCP              | DHCP               | DHCP               | DHCP             |
-| Dep-B  | Carte réseau| DHCP              | DHCP               | DHCP               | DHCP             |
-| Gestion-A | Carte réseau| VLAN 88        | 192.168.88.2       | 255.255.255.0      | 192.168.88.1     |
-| Comptable-A | Carte réseau| VLAN 99     | 192.168.99.2       | 255.255.255.0      | 192.168.99.1     |
-| Gestion-B | Carte réseau| DHCP           | DHCP               | DHCP               | DHCP             |
-| Comptable-B | Carte réseau| DHCP         | DHCP               | DHCP               | DHCP             |
-| S1     | -           | -                 | -                  | -                  | -                |
-| S2     | -           | -                 | -                  | -                  | -                |
-| M. CHERIFI | -        | -                 | -                  | -                  | -                |
+| PC-IT-Paris | Carte réseau| DHCP           | DHCP               | DHCP               | DHCP             |
+| PC-Comptable-Paris | Carte réseau| DHCP         | DHCP               | DHCP               | DHCP             |
+| PC-IT-Nancy | Carte réseau| DHCP           | DHCP               | DHCP               | DHCP             |
+| PC-Comptable-Nancy | Carte réseau| DHCP         | DHCP               | DHCP               | DHCP             |
+| Switch1     | vlan 88           | 192.168.88.2                 | 255.255.255.0                  | 192.168.88.1                  | -                |
+| Switch2     | vlan 99           | 192.168.99.2                 | 255.255.255.0                  | 192.168.99.1                  | -                |
 
 ---
 
