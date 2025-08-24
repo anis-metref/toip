@@ -211,17 +211,79 @@ wr
 
 ### 🔹 Routeur Dep‑B (Nancy)
 ```bash
+! Accès au mode privilégié
 enable
 conf t
+
+! Nom du routeur
 hostname Dep-B
+
+! Réservation des adresses IP à ne pas attribuer par DHCP
 ip dhcp excluded-address 192.168.10.1
 ip dhcp excluded-address 192.168.150.1
+
+! Pool DHCP pour le réseau DATA
 ip dhcp pool DATA
  network 192.168.10.0 255.255.255.0
  default-router 192.168.10.1
  dns-server 8.8.8.8
+
+! Pool DHCP pour le réseau VOIX
 ip dhcp pool VOIX
  network 192.168.150.0 255.255.255.0
  default-router 192.168.150.1
  option 150 ip 192.168.150.1
  dns-server 8.8.8.8
+
+! Activation de l’interface principale
+interface fa0/0
+ no shutdown
+
+! Sous-interface VLAN 10 (DATA)
+interface fa0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+! Sous-interface VLAN 99 (GESTION) — native
+interface fa0/0.99
+ encapsulation dot1Q 99 native
+ ip address 192.168.99.1 255.255.255.0
+
+! Sous-interface VLAN 150 (VOIX)
+interface fa0/0.150
+ encapsulation dot1Q 150
+ ip address 192.168.150.1 255.255.255.0
+
+! Liaison série vers Paris
+interface s0/0/0
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+
+! Configuration du service de téléphonie IP
+telephony-service
+ max-ephones 10
+ max-dn 10
+ ip source-address 192.168.150.1 port 2000
+
+! Numéros attribués aux téléphones IP de Nancy
+ephone-dn 1
+ number 2000
+ephone-dn 2
+ number 2001
+
+! Association des ephones
+ephone 1
+ button 1:1
+ephone 2
+ button 1:2
+
+! Route vers le réseau de Paris
+ip route 192.168.0.0 255.255.0.0 s0/0/0
+
+! Dial-peer pour joindre Paris
+dial-peer voice 1 voip
+ destination-pattern 1...
+ session target ipv4:10.0.0.1
+
+end
+wr
