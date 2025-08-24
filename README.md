@@ -1,4 +1,4 @@
-# ToIP Paris ↔ Nancy
+# ToIP
 
 ![topologie](topologie.jpg)
 
