@@ -227,7 +227,7 @@ ephone 1
 ephone 2
  button 1:2
 
-! Routage vers l’ensemble du réseau interne (y compris Nancy)
+! Routage vers l’ensemble du réseau interne (y compris nancy)
 ip route 192.168.0.0 255.255.0.0 s0/0/0
 
 ! Dial-peer VoIP vers Nancy
@@ -248,17 +248,17 @@ conf t
 ! Nom du routeur
 hostname Dep-B
 
-! Réservation des adresses IP à ne pas attribuer par DHCP
+! Réservation des adresses ip à ne pas attribuer par dhcp
 ip dhcp excluded-address 192.168.10.1
 ip dhcp excluded-address 192.168.150.1
 
-! Pool DHCP pour le réseau DATA
+! Pool dhcp pour le réseau DATA
 ip dhcp pool DATA
  network 192.168.10.0 255.255.255.0
  default-router 192.168.10.1
  dns-server 8.8.8.8
 
-! Pool DHCP pour le réseau VOIX
+! Pool dhcp pour le réseau VOIX
 ip dhcp pool VOIX
  network 192.168.150.0 255.255.255.0
  default-router 192.168.150.1
@@ -289,13 +289,13 @@ interface s0/0/0
  ip address 10.0.0.2 255.255.255.252
  no shutdown
 
-! Configuration du service de téléphonie IP
+! Configuration du service de téléphonie ip
 telephony-service
  max-ephones 10
  max-dn 10
  ip source-address 192.168.150.1 port 2000
 
-! Numéros attribués aux téléphones IP de Nancy
+! Numéros attribués aux téléphones de Nancy
 ephone-dn 1
  number 2000
 ephone-dn 2
