@@ -44,7 +44,7 @@ L’objectif est de mettre en place une **infrastructure ToIP** permettant :
 
 ---
 
-## 4. 📋 Table d’adressage
+## 4. Table d’adressage
 
 | Site   | Interface         | VLAN / Réseau       | Adresse IP        | Masque           | Passerelle       |
 |--------|------------------|---------------------|-------------------|------------------|------------------|
