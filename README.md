@@ -1,5 +1,7 @@
 # ToIP Paris ↔ Nancy
 
+![topologie](topologie.jpg)
+
 ## 1.  Contexte du projet
 L’entreprise **EuroCom** possède deux départements distants :  
 - **Département A** situé à **Paris**  
