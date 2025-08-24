@@ -1,5 +1,3 @@
-# toip
-
 # ToIP Paris ↔ Nancy
 
 ## 1.  Contexte du projet
