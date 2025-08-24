@@ -76,8 +76,8 @@ L’objectif est de mettre en place une **infrastructure ToIP** permettant :
 | PC-Comptable-Paris | Carte réseau| DHCP         | DHCP               | DHCP               | DHCP             |
 | PC-IT-Nancy | Carte réseau| DHCP           | DHCP               | DHCP               | DHCP             |
 | PC-Comptable-Nancy | Carte réseau| DHCP         | DHCP               | DHCP               | DHCP             |
-| Switch1     | vlan 88           | 192.168.88.2                 | 255.255.255.0                  | 192.168.88.1                  | -                |
-| Switch2     | vlan 99           | 192.168.99.2                 | 255.255.255.0                  | 192.168.99.1                  | -                |
+| Switch1     | Fa0/24          |  VLAN 88                  | 192.168.88.2                  | 255.255.255.0                  | 192.168.88.1                |
+| Switch2     | Fa0/24           | VLAN 99                 | 192.168.99.2                  | 255.255.255.0                  | 192.168.99.1                |
 
 ---
 
